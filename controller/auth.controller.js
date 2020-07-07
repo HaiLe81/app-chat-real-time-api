@@ -26,3 +26,31 @@ module.exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.register = async (req, res, next) => {
+  try {
+    let { username, fullname, phone, email, password } = req.body;
+    
+		// check existed: username & email
+		const [ isExistedEmail, isExistedUsername ] = await Promise.all([
+			User.exists({ email }),
+			User.exists({ username })
+		]);
+    if (isExistedUsername) throw new Exception("username is existed");
+    if (isExistedEmail) throw new Exception("email is existed");
+
+    const user = new User({
+      username,
+      fullname,
+      phone,
+      email,
+      password
+    });
+    await user.save();
+    return res
+      .status(statusCodes.OK)
+      .send({ message: "register account successful" });
+  } catch (error) {
+    next(error);
+  }
+};

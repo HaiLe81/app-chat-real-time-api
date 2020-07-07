@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const http = require('http')
 const { env } = require('./config/globals')
 const { createConnection } = require("./db");
-// const initRestRoutes = require("./routes/index");
+const initRestRoutes = require("./routes/index");
 const corsMiddleware = require('./middlewares/cors')
 const errorHandler = require("./middlewares/error-handler");
 
@@ -20,7 +20,7 @@ createConnection();
 
 app.use(corsMiddleware);
 
-// initRestRoutes(app);
+initRestRoutes(app);
 
 app.use(errorHandler);
 
