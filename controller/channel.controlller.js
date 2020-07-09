@@ -5,7 +5,6 @@ const { statusCodes } = require("../config/globals");
 module.exports.createChannel = async (req, res, next) => {
   try {
     const { name, author } = req.body;
-    console.log('name', name, author)
     if (!name || !author) return new Exception("Name or author is required");
     const channel = new Channel({
       name,
