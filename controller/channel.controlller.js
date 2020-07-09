@@ -14,8 +14,20 @@ module.exports.createChannel = async (req, res, next) => {
 
     return res.status(statusCodes.OK).send({
       channel,
-      message: "Add Channel Success!"
+      message: "Add Channel Success!",
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getChannels = async (req, res, next) => {
+  try {
+    const channels = await Channel.find();
+    if (!channels) throw new Exception("Don't have a channel");
+    return res
+      .status(statusCodes.OK)
+      .json({ channels, message: "Get Channels Success!" });
   } catch (err) {
     next(err);
   }
