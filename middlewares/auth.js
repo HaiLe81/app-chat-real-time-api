@@ -12,7 +12,6 @@ const isAuthorized = async (req, res, next) => {
     token = token.slice(7, token.length).trimLeft();
     const decoded = await verifyToken(token, env.JWT_SECRET_KEY);
     req.auth = decoded;
-    console.log(decoded)
     next();
   } catch ({ message = "Token is not valid" }) {
     res.status(statusCodes.UNAUTHORIZED).send({ message });

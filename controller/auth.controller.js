@@ -29,6 +29,7 @@ module.exports.login = async (req, res, next) => {
         _id: user._id,
         username: user.username,
         fullname: user.fullname,
+        phone: user.phone
       },
       env.JWT_SECRET_KEY,
       "1d"
