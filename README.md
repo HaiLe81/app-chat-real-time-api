@@ -12,7 +12,7 @@
   `git clone https://github.com/HaiLe81/app-chat-real-time-api.git`
   `cd app-chat-real-time-api`
 ## Install dependencies
-  `npm i`
+  `npm i` or `yarrn i`
 ## Set environment variables
   `cp .env.example`
 ## Running locally
